@@ -18,16 +18,22 @@
                     <th>Uzsakymu skaicius</th>
                     <th>Isleistu pinigu suma</th>
                     <th>Darbuotojas</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($orders as $order): ?>
                     <tr>
-                        <td><?= $order['KlientoPavadinimas'] ?></td>
+                        <td>
+                            <a href="new-client.view.php?edit_id=<?= $order['nr'] ?>"><?= $order['KlientoPavadinimas'] ?></a>
+                        </td>
                         <td><?= $order['contactFirstName'].' '.$order['contactLastName'] ?></td>
                         <td><?= $order['UzsakymuSkaicius'] ?></td>
                         <td><?= '$'.' '.number_format($order['IsleistaSuma'],2,',',' ') ?></td>
                         <td><?= $order['firstName'].' '.$order['lastName'] ?></td>
+                        <td>
+                            <button type="button" name="button">delete</button>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

@@ -9,6 +9,12 @@
  * /!\ Must be lowercase and without spaces /!\
  *
  */
+ if(isset($_GET['okey']))
+{
+   if ($_GET['okey']==1) {echo "<script>alert('Įdėta sekmingai');</script>";};
+   if ($_GET['okey']==0) {echo "<script>alert('Klaida! Toks klientas jau yra');</script>";};
+};
+
 $pdo = new PDO('mysql:host=localhost;dbname=8group', 'root', 'root');
 
 // Sets the PHP <-> MySQL link, data encoded in UTF-8.
@@ -32,7 +38,8 @@ $query = $pdo->prepare
     COUNT(orders.orderNumber) as UzsakymuSkaicius,
     SUM(amount) as IsleistaSuma,
     firstName,
-    lastName
+    lastName,
+    customers.customerNumber as nr
     FROM customers
     INNER JOIN orders ON customers.customerNumber = orders.customerNumber
     INNER JOIN payments ON customers.customerNumber = payments.customerNumber
